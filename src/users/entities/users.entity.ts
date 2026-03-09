@@ -8,6 +8,11 @@ import {
   VersionColumn,
 } from 'typeorm';
 
+enum Role {
+  USER = 'user',
+  ADMIN = 'admin',
+}
+
 @Entity()
 export class UsersModel {
   // @PrimaryGeneratedColumn()
@@ -15,8 +20,24 @@ export class UsersModel {
   // @PrimaryColumn()
   id: number;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    name: 'title',
+    length: 300,
+    nullable: false,
+    update: true,
+    select: true,
+    default: 'Default Title',
+    unique: false,
+  })
   title: string;
+
+  @Column({
+    type: 'enum',
+    enum: Role,
+    default: Role.USER,
+  })
+  role: Role;
 
   @CreateDateColumn()
   createdAt: Date;
