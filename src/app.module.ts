@@ -6,6 +6,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { PostsModel } from './posts/entities/posts.entity';
 import { UsersModel } from './users/entities/users.entity';
 import { StudentModel, TeacherModel } from './users/entities/person.entity';
+import { ProfileModel } from './users/entities/profile.entity';
+import { PostModel } from './users/entities/post.entity';
+import { TagModel } from './users/entities/tag.entity';
 
 @Module({
   imports: [
@@ -17,7 +20,15 @@ import { StudentModel, TeacherModel } from './users/entities/person.entity';
       username: 'postgres',
       password: 'postgres',
       database: 'postgres',
-      entities: [PostsModel, UsersModel, StudentModel, TeacherModel],
+      entities: [
+        PostsModel,
+        UsersModel,
+        StudentModel,
+        TeacherModel,
+        ProfileModel,
+        PostModel,
+        TagModel,
+      ],
       synchronize: true,
     }),
   ],
