@@ -81,7 +81,11 @@ export class AuthService {
   }
 
   verifyToken(token: string) {
-    this.jwtService.verify(token, { secret: JWT_SECRET });
+    try {
+      return this.jwtService.verify(token, { secret: JWT_SECRET });
+    } catch (err) {
+      throw new UnauthorizedException('Invalid token');
+    }
   }
 
   rotateToken(token: string, isRefreshToken: boolean) {
